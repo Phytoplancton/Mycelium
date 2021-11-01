@@ -1,2 +1,4 @@
 # Mycelium
 strategy game
+
+## rules:
