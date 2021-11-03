@@ -12,6 +12,6 @@ Despite its simple rules, the gameplay quickly results in unpredictable complexi
 
 
 ### How to play
-- Place spores with Space
+- Place spores with space
 - Navigate with the mouse
-- Use the Arrow-keys to shift the board
+- Use the arrow keys to shift the board
