@@ -105,58 +105,55 @@ const SporeData = (()=>{
 
     //---------
     // remove Spores, current player first, than other
-    //---------
-
-    // SD.deadSporeIndicesOfPlayerInArray = (player) => {
-    //     var deadSpores = []
-    //     SD.loopOverAllSpores((spore,sporeIndex) => {
-            
-    //         if (spore.numberOfConnections > TheSettings.maxConnections && spore.player == player){
-    //             deadSpores.push(sporeIndex)
-    //         }
-    //     })
-    //     return deadSpores
-    // }
-    // SD.removeSporeOnePlayerATime = (deadSporeIndex) => {
-    //     deadSpore = SD.sporeArray[deadSporeIndex]
-    //     deadSpore.isActive = false
-    //     deadSpore.linkedTo.forEach((linkedSporeIndex)=>{
-    //         var linkedSpore = SD.sporeArray[linkedSporeIndex]
-    //         linkedSpore.numberOfConnections --
-    //     })
-    // }
-    // SD.checkSporesIfDead = () => {
-    //     for (var i = 0; i < TheSettings.playerCount; i ++){
-    //         TheSettings.previousPlayer()
-    //         var deadSporeIndices = SD.deadSporeIndicesOfPlayerInArray(TheSettings.currentPlayer)
-    //         deadSporeIndices.forEach((deadSporeIndex)=>{
-    //             SD.removeSporeOnePlayerATime(deadSporeIndex)
-    //         })
-    //     }
-    // }
-
-    // remove spores all at once
-
-
-    SD.removeDeadSpores = (deadSporeIndex) => {
+    SD.deadSporeIndicesOfPlayerInArray = (player) => {
         var deadSpores = []
-
         SD.loopOverAllSpores((spore,sporeIndex) => {
-            if (spore.numberOfConnections > TheSettings.maxConnections ){
+            
+            if (spore.numberOfConnections > TheSettings.maxConnections && spore.player == player){
                 deadSpores.push(sporeIndex)
             }
         })
-
-        deadSpores.forEach((deadSporeIndex)=>{
-            var deadSpore = SD.sporeArray[deadSporeIndex]
-            deadSpore.isActive = false
-            deadSpore.linkedTo.forEach((linkedSporeIndex)=>{
-                var linkedSpore = SD.sporeArray[linkedSporeIndex]
-                linkedSpore.numberOfConnections --
-            })
-        })
-
+        return deadSpores
     }
+    SD.removeSporeOnePlayerATime = (deadSporeIndex) => {
+        deadSpore = SD.sporeArray[deadSporeIndex]
+        deadSpore.isActive = false
+        deadSpore.linkedTo.forEach((linkedSporeIndex)=>{
+            var linkedSpore = SD.sporeArray[linkedSporeIndex]
+            linkedSpore.numberOfConnections --
+        })
+    }
+    SD.removeDeadSpores = () => {
+        for (var i = 0; i < TheSettings.playerCount; i ++){
+            TheSettings.previousPlayer()
+            var deadSporeIndices = SD.deadSporeIndicesOfPlayerInArray(TheSettings.currentPlayer)
+            deadSporeIndices.forEach((deadSporeIndex)=>{
+                SD.removeSporeOnePlayerATime(deadSporeIndex)
+            })
+        }
+    }
+
+// // -------
+// // remove spores all at once
+//     SD.removeDeadSpores = (deadSporeIndex) => {
+//         var deadSpores = []
+
+//         SD.loopOverAllSpores((spore,sporeIndex) => {
+//             if (spore.numberOfConnections > TheSettings.maxConnections ){
+//                 deadSpores.push(sporeIndex)
+//             }
+//         })
+
+//         deadSpores.forEach((deadSporeIndex)=>{
+//             var deadSpore = SD.sporeArray[deadSporeIndex]
+//             deadSpore.isActive = false
+//             deadSpore.linkedTo.forEach((linkedSporeIndex)=>{
+//                 var linkedSpore = SD.sporeArray[linkedSporeIndex]
+//                 linkedSpore.numberOfConnections --
+//             })
+//         })
+
+//     }
 
     
 
