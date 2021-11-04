@@ -16,3 +16,6 @@ Despite its simple rules, the gameplay quickly results in unpredictable complexi
 - Place spores with space
 - Navigate with the mouse
 - Use the arrow keys to shift the board
+
+### Freestyle
+This is the original version of the Mycelium game. Spores can be placed freely on the board.
